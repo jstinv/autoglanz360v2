@@ -10,7 +10,7 @@
         style="max-height: 250px; width: auto"
       />
       <h1 class="display-3 fw-bold">Auto-Glanz360</h1>
-      <p class="lead">Professionelle Fahrzeugaufbereitung und -pflege in Schney</p>
+      <p class="lead">Professionelle Fahrzeugaufbereitung und Pflege in Schney</p>
     </div>
   </section>
   <section class="container my-5 text-center">
