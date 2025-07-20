@@ -2,9 +2,9 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#"
-          ><RouterLink class="nav-link" to="/">Auto-Glanz360</RouterLink></a
-        >
+        <a class="navbar-brand fw-bold" href="#">
+          <RouterLink class="nav-link" to="/">Auto-Glanz360</RouterLink>
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -20,16 +20,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/">Startseite</RouterLink>
+              <RouterLink class="nav-link" to="/" @click="closeMenu">Startseite</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/dienstleistungen">Dienstleistungen</RouterLink>
+              <RouterLink class="nav-link" to="/dienstleistungen" @click="closeMenu"
+                >Dienstleistungen</RouterLink
+              >
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/galerie">Galerie</RouterLink>
+              <RouterLink class="nav-link" to="/galerie" @click="closeMenu">Galerie</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/kontakt">Kontakt</RouterLink>
+              <RouterLink class="nav-link" to="/kontakt" @click="closeMenu">Kontakt</RouterLink>
             </li>
           </ul>
         </div>
@@ -39,5 +41,25 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
+
+// Function to close the navbar after clicking a link
+const closeMenu = () => {
+  const navbarCollapse = document.getElementById('navbarNav')
+  // Check if the collapse menu is already expanded and close it
+  if (navbarCollapse.classList.contains('show')) {
+    navbarCollapse.classList.remove('show')
+  }
+}
 </script>
+
+<style scoped>
+/* Optional: Anpassungen, um das Dropdown sauber zu verstecken */
+.navbar-collapse {
+  display: none !important;
+}
+
+.navbar-collapse.show {
+  display: block !important;
+}
+</style>
