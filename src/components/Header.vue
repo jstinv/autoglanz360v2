@@ -2,7 +2,9 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">AutoGlanz360</a>
+        <a class="navbar-brand fw-bold" href="#"
+          ><RouterLink class="nav-link" to="/">Auto-Glanz360</RouterLink></a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -18,12 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/">Home</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/fahrzeugaufbereitung"
-                >Fahrzeugaufbereitung</RouterLink
-              >
+              <RouterLink class="nav-link" to="/">Startseite</RouterLink>
             </li>
             <li class="nav-item">
               <RouterLink class="nav-link" to="/dienstleistungen">Dienstleistungen</RouterLink>

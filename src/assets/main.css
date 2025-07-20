@@ -1,0 +1,7 @@
+.nav-link:hover {
+  color: black !important;
+}
+.footer-link:hover {
+  color: black !important;
+  text-decoration: underline !important;
+}
