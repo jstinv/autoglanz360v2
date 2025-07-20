@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>AboutView</h1>
+    <h1>DienstleistungenView</h1>
   </div>
 </template>
 

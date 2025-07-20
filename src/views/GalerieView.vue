@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>AboutView</h1>
+    <h1>GalerieView</h1>
   </div>
 </template>
 
