@@ -7,7 +7,7 @@
       Auto-Glanz360<br />
       Einzelunternehmen<br />
       Siegfried Vorister<br />
-      Gründleinsweg [Deine Hausnummer]<br />
+      Gründleinsweg<br />
       96215 Schney<br />
       Deutschland
     </p>
@@ -26,7 +26,7 @@
     <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
     <p>
       Siegfried Vorister<br />
-      Gründleinsweg [Deine Hausnummer]<br />
+      Gründleinsweg<br />
       96215 Schney
     </p>
 
