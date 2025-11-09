@@ -3,7 +3,6 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <!-- Hero Section -->
   <section class="hero-section text-center py-5 bg-light">
     <div class="container">
       <img
@@ -11,7 +10,7 @@ import { RouterLink } from 'vue-router'
         alt="Auto-Glanz360 Logo"
         class="hero-logo img-fluid mb-4"
       />
-      <p class="lead mb-4">Professionelle Fahrzeugaufbereitung und Pflege in Schney</p>
+      <h1 class="lead mb-4">Professionelle Fahrzeugaufbereitung und Pflege in Schney</h1>
       <RouterLink to="/buchung" class="btn btn-primary btn-lg me-2">Jetzt Termin anfragen</RouterLink>
       <RouterLink to="/dienstleistungen" class="btn btn-secondary btn-lg">Unsere Dienstleistungen</RouterLink>
     </div>

@@ -43,7 +43,7 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
-import { servicesData as services } from '../components/services/servicesData.js'
+import { servicesData as services } from '@/services/servicesData.js'
 </script>
 
 <style scoped>

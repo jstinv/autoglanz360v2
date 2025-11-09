@@ -103,7 +103,7 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 import emailjs from '@emailjs/browser'
-import { servicesData as services } from '../components/services/servicesData.js'
+import { servicesData as services } from '@/services/servicesData.js'
 
 const form = reactive({
   name: '',
