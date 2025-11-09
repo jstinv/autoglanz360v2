@@ -5,8 +5,9 @@
     <h2>Angaben gemäß § 5 TMG</h2>
     <p>
       Auto-Glanz360<br />
+      Einzelunternehmen<br />
       Siegfried Vorister<br />
-      Gründleinsweg <span style="color: red">Einfügen</span><br />
+      Gründleinsweg [Deine Hausnummer]<br />
       96215 Schney<br />
       Deutschland
     </p>
@@ -17,24 +18,28 @@
       E-Mail: <a href="mailto:autoglanz360@gmx.de">autoglanz360@gmx.de</a>
     </p>
 
-    <h2>Umsatzsteuer-ID</h2>
+    <h2>Umsatzsteuer</h2>
     <p>
-      Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:<br />
-      DE<span style="color: red">XXXXXXX</span>
-    </p>
-
-    <h2>Handelsregister</h2>
-    <p>
-      Eintragung im Handelsregister.<br />
-      Registergericht: <span style="color: red">Einfügen</span><br />
-      Registernummer: <span style="color: red">Einfügen</span>
+      Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
     </p>
 
     <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
     <p>
       Siegfried Vorister<br />
-      Zur Mühlleite 2<br />
-      96268 Mitwitz
+      Gründleinsweg [Deine Hausnummer]<br />
+      96215 Schney
+    </p>
+
+    <h2>EU-Streitschlichtung</h2>
+    <p>
+      Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+      <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer"
+        >https://ec.europa.eu/consumers/odr/</a
+      >.<br />
+      Unsere E-Mail-Adresse finden Sie oben im Impressum.
+    </p>
+    <p>
+      Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
     </p>
 
     <h2>Haftungsausschluss</h2>

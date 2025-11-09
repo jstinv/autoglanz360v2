@@ -1,58 +1,68 @@
 <script setup>
-import { ref } from 'vue'
-
-import before1 from '../assets/galleryPictures/mcLaren1.jpg'
-import after1 from '../assets/galleryPictures/mcLaren2.jpg'
-import before2 from '../assets/galleryPictures/mcLaren2.jpg'
-import after2 from '../assets/galleryPictures/mcLaren1.jpg'
-import before3 from '../assets/galleryPictures/mcLaren2.jpg'
-import after3 from '../assets/galleryPictures/mcLaren1.jpg'
-import before4 from '../assets/galleryPictures/mcLaren1.jpg'
-import after4 from '../assets/galleryPictures/mcLaren2.jpg'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const images = ref([
   {
     id: 1,
-    before: before1,
-    after: after1,
-    alt: 'McLaren',
+    sources: ['/gallery/mcLaren1.webp', '/gallery/mcLaren2.webp'],
+    currentIndex: 0,
+    isLoading: true,
+    alt: 'McLaren MP8',
     description: 'McLaren MP8 (3 Stufige Politur, Keramik-Versieglung)',
   },
-  {
-    id: 2,
-    before: before2,
-    after: after2,
-    alt: 'BMW X3',
-    description: 'BMW X3 (1 Stufige Politur, Keramik-Versieglung)',
-  },
-  {
-    id: 3,
-    before: before3,
-    after: after3,
-    alt: 'Mercedes S63',
-    description: 'Mercedes S63 Coupè (3 Stufige Politur, Keramik-Versieglung)',
-  },
-  {
-    id: 4,
-    before: before4,
-    after: after4,
-    alt: 'Corvette C8',
-    description: 'Corvette C8 (3 Stufige Politur, Keramik-Versieglung)',
-  },
 ])
+
+let intervalId = null
+
+onMounted(() => {
+  intervalId = setInterval(() => {
+    images.value.forEach((imageGroup) => {
+      imageGroup.currentIndex = (imageGroup.currentIndex + 1) % imageGroup.sources.length
+    })
+  }, 4000)
+})
+
+onUnmounted(() => {
+  clearInterval(intervalId)
+})
+
+const onImageLoad = (imageGroup) => {
+  // Hide spinner only after the first image of a group is loaded
+  if (imageGroup.isLoading) {
+    imageGroup.isLoading = false;
+  }
+}
 </script>
 
 <template>
   <section class="gallery container my-5">
-    <h2 class="text-center mb-4">Galerie – Vorher & Nachher</h2>
+    <h2 class="text-center mb-4">Galerie</h2>
+    <p class="lead text-center">
+      Hier können Sie einige der bereits aufbereiteten Fahrzeuge sehen.
+    </p>
+    <br />
     <div class="grid-container">
-      <div v-for="image in images" :key="image.id" class="card shadow-sm no-border">
-        <div class="before-after-wrapper">
-          <img :src="image.before" :alt="image.alt + ' vorher'" class="img before-img" />
-          <img :src="image.after" :alt="image.alt + ' nachher'" class="img after-img" />
+      <div v-for="imageGroup in images" :key="imageGroup.id" class="card shadow-sm no-border">
+        <div class="slideshow-wrapper">
+          <div v-if="imageGroup.isLoading" class="spinner-container">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <template v-for="(source, index) in imageGroup.sources" :key="source">
+            <img
+              :src="source"
+              :alt="imageGroup.alt"
+              class="img-fluid slideshow-image"
+              :class="{ 'active': index === imageGroup.currentIndex }"
+              loading="lazy"
+              decoding="async"
+              @load="onImageLoad(imageGroup)"
+            />
+          </template>
         </div>
         <div class="image-description mt-2 text-center">
-          <p>{{ image.description }}</p>
+          <p>{{ imageGroup.description }}</p>
         </div>
       </div>
     </div>
@@ -65,80 +75,58 @@ const images = ref([
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
-
-/* Entferne border und Schatten komplett von card */
 .card.no-border {
   border: none !important;
   box-shadow: none !important;
   background: transparent;
 }
-
-/* Container für Bilder */
-.before-after-wrapper {
+.slideshow-wrapper {
   position: relative;
-  cursor: pointer;
   overflow: hidden;
   border-radius: 10px;
   aspect-ratio: 4 / 3;
-
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
-
-.img {
+.slideshow-wrapper:hover {
+  transform: scale(1.03);
+}
+.slideshow-image {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+.slideshow-image.active {
+  opacity: 1;
+}
 
+.spinner-container {
+  position: absolute;
   top: 0;
   left: 0;
-
-  transition: opacity 0.4s ease;
-
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.before-img {
-  opacity: 1;
-  z-index: 1;
-  position: relative;
-}
-
-.after-img {
-  opacity: 0;
-  z-index: 2;
-}
-
-.before-after-wrapper:hover .after-img {
-  opacity: 1;
-}
-
-.before-after-wrapper:hover .before-img {
-  opacity: 0;
-}
-
-/* Für kleinere Bildschirme 1 Bild pro Zeile */
+/* kleine Bildschirme 1 Bild pro Zeile */
 @media (max-width: 576px) {
   .grid-container {
     grid-template-columns: 1fr;
   }
 }
-
-/* Styling für die Bildbeschreibung */
 .image-description {
   font-size: 0.9rem;
   color: #333;
   padding: 0.5rem;
   line-height: 1.4;
 }
-
 .image-description p {
   margin: 0;
   color: #666;

@@ -31,6 +31,11 @@
               <RouterLink class="nav-link" to="/galerie" @click="closeMenu">Galerie</RouterLink>
             </li>
             <li class="nav-item">
+              <RouterLink class="nav-link cta-link" to="/buchung" @click="closeMenu">
+                Jetzt Termin anfragen
+              </RouterLink>
+            </li>
+            <li class="nav-item">
               <RouterLink class="nav-link" to="/kontakt" @click="closeMenu">Kontakt</RouterLink>
             </li>
           </ul>
@@ -39,14 +44,11 @@
     </nav>
   </header>
 </template>
-
 <script setup>
 import { ref } from 'vue'
 
-// Function to close the navbar after clicking a link
 const closeMenu = () => {
   const navbarCollapse = document.getElementById('navbarNav')
-  // Check if the collapse menu is already expanded and close it
   if (navbarCollapse.classList.contains('show')) {
     navbarCollapse.classList.remove('show')
   }
@@ -54,12 +56,38 @@ const closeMenu = () => {
 </script>
 
 <style scoped>
-/* Optional: Anpassungen, um das Dropdown sauber zu verstecken */
-.navbar-collapse {
-  display: none !important;
+/* Mobile-only styles for the collapsible menu */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: #f8f9fa;
+    padding: 0 1rem 1rem 1rem;
+  }
+
+  /* Animation start state for mobile */
+  .navbar-nav .nav-item {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+
+  /* Animation end state for mobile when menu is open */
+  .navbar-collapse.show .nav-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.navbar-collapse.show {
-  display: block !important;
+.nav-link.router-link-exact-active {
+  font-weight: 600;
+}
+
+.cta-link {
+  color: #0056b3 !important;
+  font-weight: 600;
+  transition: color 0.2s ease-in-out;
+}
+
+.cta-link:hover {
+  color: #004085 !important;
 }
 </style>

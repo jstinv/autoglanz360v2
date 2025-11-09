@@ -1,68 +1,22 @@
 <template>
   <section class="container my-5">
     <h2 class="text-center mb-5">Unsere Dienstleistungen</h2>
-    <div class="row g-4">
-      <div class="col-12 col-lg-4">
-        <div
-          class="card h-100 shadow-sm p-4"
-          @mouseenter="hover = 'innen'"
-          @mouseleave="hover = null"
-          :class="{ 'shadow-lg hover-lift': hover === 'innen' }"
-        >
-          <div class="card-body">
-            <h5 class="card-title mb-3">Innenaufbereitung</h5>
-            <ul class="ps-3 mb-0">
-              <li>
-                Intensive Reinigung von Cockpit, Kunststoffteilen, Einstiegsleisten und ABC-Säulen
-              </li>
-              <li>Tiefgründige Nassreinigung</li>
-              <li>Behandlung mit Tornado-Gerät inklusive Dachhimmel und Fleckenentfernung</li>
-              <li>Fleckenentfernung an Türen und Sitzbezügen</li>
-              <li>Reinigung von Textil und Leder, inklusive Politur mit Lederschutz-Creme*</li>
-
-              <li>Fensterreinigung innen</li>
-              <li>Abschließende Versiegelung von Cockpit und Kunststoffteilen</li>
-              <li><small class="fst-italic">*Lederschutz-Creme gegen Aufpreis</small></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4">
-        <div
-          class="card h-100 shadow-sm p-4"
-          @mouseenter="hover = 'aussen'"
-          @mouseleave="hover = null"
-          :class="{ 'shadow-lg hover-lift': hover === 'aussen' }"
-        >
-          <div class="card-body">
-            <h5 class="card-title mb-3">Außenaufbereitung</h5>
-            <ul class="ps-3 mb-0">
-              <li>Intensive Fahrzeugvorwäsche</li>
-              <li>Entfernung von Insekten, Teer, Flugrost von der Oberfläche</li>
-              <li>Handwäsche des Fahrzeugs</li>
-              <li>Reinigung der Glasflächen</li>
-              <li>Lackpolitur (ein- bis dreistufig)</li>
-              <li>Hochwertige Keramik-Versiegelung</li>
-              <li>
-                <small class="fst-italic">Standzeit der Versiegelung variiert je nach Pflege</small>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4">
-        <div
-          class="card h-100 shadow-sm p-4 d-flex flex-column justify-content-center"
-          @mouseenter="hover = 'felgen'"
-          @mouseleave="hover = null"
-          :class="{ 'shadow-lg hover-lift': hover === 'felgen' }"
-        >
-          <div class="card-body">
-            <h5 class="card-title mb-3">Felgenpflege & Keramikversiegelung</h5>
-            <ul class="ps-3 mb-0">
-              <li>Gründliche Felgenreinigung</li>
-              <li>Professionelle Keramik-Versiegelung für dauerhaften Schutz und Glanz</li>
-            </ul>
+    <div class="row g-4 justify-content-center">
+      <div v-for="service in services" :key="service.id" class="col-12 col-lg-4 d-flex">
+        <div class="card h-100 shadow-sm p-4 hover-lift w-100">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title mb-3">{{ service.title }}</h5>
+            <div v-for="(pkg, index) in service.packages" :key="pkg.name" class="mb-4">
+              <div class="d-flex justify-content-between align-items-baseline">
+                <h6 class="fw-bold">{{ pkg.name }}</h6>
+                <span class="badge bg-primary rounded-pill">{{ pkg.price }}</span>
+              </div>
+              <ul class="ps-3 mt-2">
+                <li v-for="feature in pkg.features" :key="feature">{{ feature }}</li>
+              </ul>
+              <hr v-if="index < service.packages.length - 1" class="my-3" />
+            </div>
+            <p v-if="service.note" class="mt-auto mb-0"><small class="fst-italic">{{ service.note }}</small></p>
           </div>
         </div>
       </div>
@@ -70,33 +24,34 @@
     <br /><br />
     <hr />
   </section>
-
-  <section class="container my-5">
-    <h2 class="text-center mb-4">Preisinformationen</h2>
-    <p class="text-center mx-auto" style="max-width: 700px; font-size: 1.1rem">
-      Die Preise veriieren je nach Umfang der Leistung, Fahrzeugtyp und Zustand des Fahrzeugs.
-      <br />
-      Für einen genauen Preis nehmen Sie bitte
-      <a
-        href="mailto:autoglanz360@gmx.de?subject=Anfrage%20Angebot%20zur%20Fahrzeugaufbereitung&body=Guten%20Tag,%0A%0Aich%20interessiere%20mich%20für%20eine%20professionelle%20Fahrzeugaufbereitung%20und%20bitte%20Sie%20um%20ein%20unverbindliches%20Angebot.%0A%0AGenauere%20Infos%20zu%20meinem%20Fahrzeug/Anfrage:%0A%3E%0A%0AVielen%20Dank%20im%20Voraus.%0A%0AMit%20freundlichen%20Grüßen"
-        style="color: #0056b3"
-        class="text-decoration-none"
-        >Kontakt mit uns auf</a
-      >. Hier erhalten Sie ein individuelles Angebot nach Ihren Anforderungen.
-    </p>
+  <section class="container my-5 text-center">
+    <div class="p-4 rounded-3 bg-light d-inline-block">
+      <h4 class="mb-3"><i class="bi bi-info-circle-fill text-primary me-2"></i>Gut zu wissen</h4>
+      <p class="mx-auto" style="max-width: 700px">
+        Die hier genannten Preise dienen als Orientierung. Da jedes Fahrzeug einzigartig ist, hängt
+        der endgültige Preis vom genauen Zustand, dem Fahrzeugtyp und dem gewünschten
+        Leistungsumfang ab.
+        <br /><br />
+        Für ein präzises und faires Angebot, das perfekt auf Ihre Wünsche zugeschnitten ist,
+        <RouterLink to="/buchung" class="fw-bold text-decoration-none" style="color: #0056b3"
+          >fordern Sie einfach eine unverbindliche Anfrage an</RouterLink
+        >.
+      </p>
+    </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const hover = ref(null)
+import { RouterLink } from 'vue-router'
+import { servicesData as services } from '../components/services/servicesData.js'
 </script>
 
 <style scoped>
-.hover-lift {
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
   transform: translateY(-5px);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 </style>

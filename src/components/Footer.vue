@@ -3,7 +3,7 @@
     <div class="container p-4">
       <div class="row">
         <div class="col-lg-6 col-md-12 mb-4 mb-md-0 text-lg-start text-center">
-          <h5 class="text-uppercase fw-bold">Auto-Glanz360</h5>
+          <h5 class="fw-bold">Auto-Glanz360</h5>
           <p>Professionelle Fahrzeugaufbereitung &amp; Pflege</p>
         </div>
 
@@ -18,6 +18,11 @@
             <li>
               <RouterLink to="/impressum" class="text-reset text-decoration-none footer-link"
                 >Impressum</RouterLink
+              >
+            </li>
+            <li>
+              <RouterLink to="/datenschutz" class="text-reset text-decoration-none footer-link"
+                >Datenschutz</RouterLink
               >
             </li>
           </ul>
@@ -59,10 +64,14 @@
     </div>
 
     <div class="text-center p-2 bg-secondary text-white small">
-      © 2025 Auto-Glanz360 - Alle Rechte vorbehalten
+      © 2025 Auto-Glanz360. Alle Rechte vorbehalten.
     </div>
   </footer>
 </template>
+
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
 
 <style scoped>
 .footer-link {

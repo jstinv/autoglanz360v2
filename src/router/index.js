@@ -5,6 +5,8 @@ import Galerie from '../views/GalerieView.vue'
 import Kontakt from '../views/KontaktView.vue'
 import Impressum from '../views/ImpressumView.vue'
 import Agb from '../views/AgbView.vue'
+import Buchung from '../views/BuchungView.vue'
+import Datenschutz from '../views/DatenschutzView.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -13,13 +15,14 @@ const routes = [
   { path: '/kontakt', name: 'Kontakt', component: Kontakt },
   { path: '/impressum', name: 'Impressum', component: Impressum },
   { path: '/agb', name: 'AGB', component: Agb },
+  { path: '/buchung', name: 'Buchung', component: Buchung },
+  { path: '/datenschutz', name: 'Datenschutz', component: Datenschutz }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
   scrollBehavior(to, from, savedPosition) {
-    // Immer ganz nach oben scrollen beim Seitenwechsel
     return { top: 0 }
   },
 })
